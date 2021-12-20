@@ -1,0 +1,72 @@
+.navbar-dark{
+    background-color: #2F7B8B!important;
+}
+
+.btn-signup{
+    background-color: #004B57!important;
+    border: none;
+}
+
+.btn-signup:hover{
+    background-color: #003c46!important;
+}
+
+.btn-login{
+    background-color: #53b6ca!important;
+    color: white;
+    border: none;
+}
+
+.btn-login:hover{
+    background-color: #4fa6b8!important;
+}
+
+body{
+    background-color: grey;
+}
+
+#outer{
+    display: flex;
+    min-height: 50vh;
+}
+
+.outer-auth{
+    display: flex;
+}
+
+#inner, .inner-auth{
+    margin: auto;
+}
+.create-poll{
+    font-size: 40px;
+    border-radius: 10px;
+    padding: 10px 0 10px 0; 
+}
+.create-poll a{
+    padding: 15px;
+}
+th{
+    font-weight: normal;
+}
+.poll-settings{
+    list-style-type: none;
+    text-align: left!important; 
+    padding-left: 0;
+}
+a{
+    color: white;
+    text-decoration: none;
+}
+
+.create-poll a:hover, .poll-links:hover{
+    color: #4fa6b8;
+}
+
+
+.poll-link:hover, .signup:hover, .login:hover{
+    color: white;
+}
+
+.poll-list-container{
+    margin:20px;
+}

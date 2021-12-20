@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Polls
+{% endblock title %}
+
+
+{% block content %}
+    <div class="poll-list-container">
+        {% for poll in object_list %}
+            <h3><a href="{% url 'vote' poll.pk %}" class="poll-links">{{ poll }}</a></h2>
+        {% endfor %}
+    </div>
+{% endblock content %}  

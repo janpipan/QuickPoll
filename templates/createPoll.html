@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Create Poll
+{% endblock title %}
+
+{% block content %}
+<div class="container" id="outer">
+    <div id="inner" class="text-center">
+        <h1>Create Poll</h1>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="question" maxlength="100" required="" id="id_question" placeholder="Type your question">
+            {{ answer_formset.management_form }}
+                {% for form in answer_formset %}
+                <div class="answer-form">
+                    {{ form.as_p }}
+                </div>
+                {% endfor %}
+            <ul class="poll-settings">
+                <li>
+                    <input type="checkbox" name="multiple_answers" id="id_multiple_answers">
+                    <label for="id_multiple_answers">Multiple answers</label>
+                </li>
+                <li>
+                    <input type="checkbox" name="add_answer" id="id_add_answer">    
+                    <label for="id_add_answer">Add answer</label>
+                </li>
+            </ul>
+
+            <button type="submit" class="btn btn-dark">Create Poll</button>
+
+        </form>
+    </div>
+</div>
+{% endblock content %}

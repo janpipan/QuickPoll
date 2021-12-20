@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Vote
+{% endblock title %}
+
+{% block content %}
+<h1>{{ poll.question}}</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {% for answer in poll.answer_set.all %}
+        <ul>
+            <li>
+                {% if poll.multiple_answers %}
+                <input type="checkbox" name="{{answer.id}}">
+                {% else %}
+                <input type="radio" name="{{answer.id}}">
+                {% endif %}
+                <label for="{{answer.id}}">{{ answer.answer }}</label>
+            </li>
+        </ul>
+    {% endfor %}
+    <button type="subimt" class="btn btn-dark"> Vote</button>
+    <button class="btn btn-dark"><a href="{% url 'results' poll.pk %}">Results</a></button>
+
+</form>
+
+{% endblock content %}

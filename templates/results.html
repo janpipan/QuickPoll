@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Poll
+{% endblock title %}
+
+{% block content %}
+    <h1> {{poll.question}} </h1>
+
+    <ul>
+        {% for answer in poll.answer_set.all %}
+        <li>
+            {{ answer.answer }} -- {{ answer.count }} vote {{ answer.count|pluralize}}
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

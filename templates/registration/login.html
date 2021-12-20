@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Log In
+{% endblock title %}
+
+{% block content %}
+<div class="conatiner outer-login">
+    <div class="text-center inner-login">
+        <h1 class="mt-3">Log In</h1>
+        <br>
+        <form method="post" class="text-light">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button type="submit" class="btn btn-dark">Log In</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}
