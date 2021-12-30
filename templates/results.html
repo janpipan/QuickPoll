@@ -9,9 +9,44 @@
 
     <ul>
         {% for answer in poll.answer_set.all %}
-        <li>
-            {{ answer.answer }} -- {{ answer.count }} vote {{ answer.count|pluralize}}
+        <li id="{{answer.id}}">
+            {{ answer.answer }} - <span>{{ answer.count }}</span> vote{{ answer.count|pluralize}}
         </li>
         {% endfor %}
     </ul>
 {% endblock content %}
+
+{% block script %}
+    <script>
+        
+        let loc = window.location;
+        
+        let wsStart = 'ws://';
+        if (loc.protocol == "https:"){
+            wsStart = 'wss://' ;
+        } 
+        let endpoint = wsStart + loc.host + loc.pathname
+
+        let socket = new WebSocket(endpoint);
+
+        socket.onmessage = function(e){
+            console.log("message", e);
+            msg = JSON.parse(e.data);
+            for (let answer of msg){
+                let ans = document.getElementById(answer['pk']).children[0];
+                ans.innerHTML = answer['fields']['count'];
+                console.log(answer);
+            }
+        }
+        socket.onopen = function(e){
+            console.log("open", e);
+        }
+        socket.onerror = function(e){
+            console.log("error", e);
+        }
+        socket.onclose = function(e){
+            socket.close();
+            console.log("close", e);
+        }
+    </script>
+{% endblock script %}

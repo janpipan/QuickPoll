@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-t$foh@ur583)3j2b*qh5w552)7qce5f#*=t555dpstwtkpa6ha
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -72,6 +73,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'quickpoll.wsgi.application'
+
+ASGI_APPLICATION = 'quickpoll.asgi.application'
 
 
 # Database
@@ -137,3 +140,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # set login redirect
 
 LOGIN_REDIRECT_URL = 'home'
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("localhost", 6379)],
+        },
+    },
+}
